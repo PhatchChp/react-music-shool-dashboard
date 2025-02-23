@@ -1,9 +1,11 @@
 import {
+    Baby,
     Building,
-    CircleSlash,
-    CreditCard,
-    House,
-    Package,
+    CalendarClock,
+    DoorClosed,
+    LayoutDashboard,
+    LogOut,
+    Users,
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -12,11 +14,11 @@ const Sidebar = () => {
     const [selectMenu, setSelectMenu] = useState("");
 
     const menus = [
-        { id: "/", label: "Dashboard", icon: <House /> },
-        { id: "employees", label: "Employee", icon: <CircleSlash /> },
-        { id: "schedule", label: "Schedule", icon: <CircleSlash /> },
-        { id: "rooms", label: "Room", icon: <CreditCard /> },
-        { id: "students", label: "Student", icon: <Package /> },
+        { id: "/", label: "Dashboard", icon: <LayoutDashboard /> },
+        { id: "employees", label: "Employee", icon: <Users /> },
+        { id: "schedule", label: "Schedule", icon: <CalendarClock /> },
+        { id: "rooms", label: "Room", icon: <DoorClosed /> },
+        { id: "students", label: "Student", icon: <Baby /> },
     ];
 
     return (
@@ -46,8 +48,11 @@ const Sidebar = () => {
                     <hr className="border-gray-300 mb-4" />
                     <Link
                         to={"logout"}
-                        className="p-2 rounded-lg hover:hover:border-1 border-gray-300"
+                        className="flex gap-4 p-2 rounded-lg hover:hover:border-1 border-gray-300"
                     >
+                        <span className="text-blue-900">
+                            <LogOut />
+                        </span>
                         Logout
                     </Link>
                 </div>
