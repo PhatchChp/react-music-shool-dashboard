@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { AuthContext } from "./AuthContext";
+import { AuthContext, UserData } from "./AuthContext";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useState<string | null>(null);
-    const login = (username: string) => setUser(username);
+    const [user, setUser] = useState<UserData | null>(null);
+    const login = (userData: UserData) => setUser(userData);
     const logout = () => setUser(null);
 
     return (

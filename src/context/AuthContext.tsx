@@ -1,8 +1,14 @@
 import { createContext } from "react";
 
+export type UserData = {
+    username: string;
+    firstName: string;
+    lastName: string;
+};
+
 interface AuthContextType {
-    user: string | null;
-    login: (username: string) => void;
+    user: UserData | null;
+    login: (userData: UserData) => void;
     logout: () => void;
 }
 
