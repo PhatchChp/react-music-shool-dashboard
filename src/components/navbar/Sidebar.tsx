@@ -8,13 +8,17 @@ import {
     Users,
 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import ModalConfirm from "../modal/ModalConfirm";
+import { useLogout } from "../../hooks/useLogout";
 
 const Sidebar = () => {
-    const [selectMenu, setSelectMenu] = useState("");
+    const [isOpenModal, setIsOpenModal] = useState(false);
+    const handleLogout = useLogout();
+    const location = useLocation();
 
     const menus = [
-        { id: "/", label: "Dashboard", icon: <LayoutDashboard /> },
+        { id: "dashboard", label: "Dashboard", icon: <LayoutDashboard /> },
         { id: "employees", label: "Employee", icon: <Users /> },
         { id: "schedule", label: "Schedule", icon: <CalendarClock /> },
         { id: "rooms", label: "Room", icon: <DoorClosed /> },
@@ -30,31 +34,43 @@ const Sidebar = () => {
             <hr className="border-gray-300" />
 
             <ul className="flex flex-col gap-4 grow">
-                {menus.map((menu) => (
-                    <Link
-                        key={menu.id}
-                        to={menu.id}
-                        onClick={() => setSelectMenu(menu.id)}
-                        className={`flex gap-4 p-2 rounded-lg hover:border-1 hover:border-gray-300 ${
-                            menu.id === selectMenu && "bg-slate-100"
-                        } `}
-                    >
-                        <span className="text-blue-900">{menu.icon}</span>
-                        {menu.label}
-                    </Link>
-                ))}
+                {menus.map((menu) => {
+                    const isActive = location.pathname.includes(menu.id);
+                    return (
+                        <Link
+                            key={menu.id}
+                            to={menu.id}
+                            className={`flex gap-4 p-2 rounded-lg hover:border-1 hover:border-gray-300 ${
+                                isActive && "bg-slate-100"
+                            } `}
+                        >
+                            <span className="text-blue-900">{menu.icon}</span>
+                            {menu.label}
+                        </Link>
+                    );
+                })}
 
                 <div className="flex flex-col mt-auto">
                     <hr className="border-gray-300 mb-4" />
-                    <Link
-                        to={"logout"}
+
+                    {isOpenModal && (
+                        <ModalConfirm
+                            title="Are you sure logout?"
+                            onConfirm={() => handleLogout()}
+                            onCancel={() => setIsOpenModal(false)}
+                            isOpen={isOpenModal}
+                        />
+                    )}
+
+                    <button
                         className="flex gap-4 p-2 rounded-lg hover:hover:border-1 border-gray-300"
+                        onClick={() => setIsOpenModal(true)}
                     >
                         <span className="text-blue-900">
                             <LogOut />
                         </span>
                         Logout
-                    </Link>
+                    </button>
                 </div>
             </ul>
         </nav>
