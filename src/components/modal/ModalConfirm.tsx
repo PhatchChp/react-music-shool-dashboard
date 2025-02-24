@@ -27,7 +27,7 @@ const ModalConfirm = ({
         <div className={`fixed inset-0 flex items-center justify-center bg-black/50`}onClick={handleClose}>
             <div
                 onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                className="bg-white shadow-lg rounded-md px-10 py-6 flex flex-col justify-between "
+                className="bg-white shadow-lg rounded-md px-10 py-6 flex flex-col justify-between w-full max-w-[400px] h-full max-h-[200px]"
             >
                 <div className="text-center">
                     <h1 className="text-lg">{title}</h1>
