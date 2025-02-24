@@ -8,6 +8,7 @@ export type UserData = {
 
 interface AuthContextType {
     user: UserData | null;
+    setUser: (userData: UserData | null) => void;
     login: (userData: UserData) => void;
     logout: () => void;
 }
