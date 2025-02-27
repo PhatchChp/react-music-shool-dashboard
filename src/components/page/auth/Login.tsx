@@ -1,34 +1,9 @@
-import { useState } from "react";
 import Button from "../../button/Button";
 import FormInput from "../../form/FormInput";
-
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../hooks/useAuth";
+import { useLogin } from "./hooks/useLogin";
 
 const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const { login } = useAuth();
-    const navigate = useNavigate();
-
-    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value);
-    };
-
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
-    };
-
-    const handleLogin = (e: React.FormEvent) => {
-        e.preventDefault();
-        const fakeUser = {
-            username,
-            firstName: "Phatch",
-            lastName: "Miller",
-        };
-        login(fakeUser);
-        navigate("/dashboard");
-    };
+    const { password, username, handleLogin, handleUsernameChange, handlePasswordChange } = useLogin();
 
     return (
         <div className="flex items-center justify-center h-screen">
@@ -46,7 +21,7 @@ const Login = () => {
                         label={"Username"}
                         name={"username"}
                         type={"text"}
-                        placeholder="enter username.."
+                        placeholder="Enter username.."
                         onChange={handleUsernameChange}
                         defaultValue={username}
                     />
@@ -54,11 +29,13 @@ const Login = () => {
                         label="Password"
                         name="password"
                         type="password"
-                        placeholder="enter password.."
+                        placeholder="Enter password.."
                         onChange={handlePasswordChange}
                         defaultValue={password}
                     />
-                    <Button text="Login" type="submit" />
+                    <div className="mt-2">
+                        <Button text="Login" type="submit" />
+                    </div>
                 </div>
             </form>
         </div>

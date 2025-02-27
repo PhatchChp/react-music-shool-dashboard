@@ -1,15 +1,11 @@
 import { createContext } from "react";
-
-export type UserData = {
-    username: string;
-    firstName: string;
-    lastName: string;
-};
+import { UserResponse } from "../services/userService";
+import { LoginResponse } from "../services/authService";
 
 interface AuthContextType {
-    user: UserData | null;
-    setUser: (userData: UserData | null) => void;
-    login: (userData: UserData) => void;
+    user: UserResponse | null;
+    setUser: (userData: UserResponse | null) => void;
+    login: (loginData: LoginResponse) => void;
     logout: () => void;
 }
 

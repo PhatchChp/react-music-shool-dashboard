@@ -55,7 +55,8 @@ const Sidebar = () => {
 
                     {isOpenModal && (
                         <ModalConfirm
-                            title="Are you sure you want to log out?"
+                            title="Are you sure ?"
+                            description="Do you want to logout"
                             onConfirm={() => handleLogout()}
                             onCancel={() => setIsOpenModal(false)}
                             isOpen={isOpenModal}
