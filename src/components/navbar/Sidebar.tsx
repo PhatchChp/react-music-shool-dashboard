@@ -20,6 +20,7 @@ const Sidebar = () => {
     const menus = [
         { id: "dashboard", label: "Dashboard", icon: <LayoutDashboard /> },
         { id: "employees", label: "Employee", icon: <Users /> },
+        { id: "users", label: "User", icon: <Users /> },
         { id: "schedule", label: "Schedule", icon: <CalendarClock /> },
         { id: "rooms", label: "Room", icon: <DoorClosed /> },
         { id: "students", label: "Student", icon: <Baby /> },

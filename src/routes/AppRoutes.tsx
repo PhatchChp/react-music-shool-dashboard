@@ -4,6 +4,7 @@ import PrivateRoute from "./PrivateRoute";
 import Layout from "../laout/Layout";
 import Dashboard from "../components/page/dashboard/Dashboard";
 import Notfound from "../components/page/notfound/Notfound";
+import User from "../components/page/user/User";
 
 const AppRoutes = () => {
     return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
                     <Route element={<Layout />}>
                         <Route index element={<Dashboard />} />
                         <Route path="dashboard" element={<Dashboard />} />
+                        <Route path="users" element={<User />} />
                     </Route>
                 </Route>
                 <Route path="*" element={<Notfound />} />
