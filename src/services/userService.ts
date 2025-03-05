@@ -10,5 +10,6 @@ export interface UserResponse {
 }
 
 export const userService = {
-    getAll: async () => api.get("/users").then((response) => response.data),
+    getAll: async (): Promise<UserResponse[]> =>
+        api.get("/user").then((response) => response.data),
 };
