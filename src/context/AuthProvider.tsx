@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import { UserResponse } from "../services/userService";
+import { User } from "../services/userService";
 import { authService, LoginResponse } from "../services/authService";
 import { useToast } from "../hooks/useToast";
 import { handleUnauthorized } from "../services/api";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useState<UserResponse | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const isUnauthorizedHandled = useRef(false);
     const { toastWarning } = useToast();

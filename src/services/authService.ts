@@ -1,5 +1,5 @@
 import api from "./api";
-import { UserResponse } from "./userService";
+import { User } from "./userService";
 
 interface LoginRequest {
     username: string;
@@ -8,7 +8,7 @@ interface LoginRequest {
 
 export interface LoginResponse {
     token: string;
-    user: UserResponse;
+    user: User;
 }
 
 export const authService = {
