@@ -1,4 +1,4 @@
-import Button from "../button/Button";
+import Button from "./Button";
 
 interface ModalConfirmProps {
     onConfirm: () => void;

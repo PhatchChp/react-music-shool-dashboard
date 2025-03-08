@@ -1,4 +1,4 @@
-import Button from "../../button/Button";
+import Button from "../../ui/Button";
 import FormInput from "../../form/FormInput";
 import { useLogin } from "./hooks/useLogin";
 
