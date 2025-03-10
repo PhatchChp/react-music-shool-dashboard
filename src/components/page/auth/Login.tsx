@@ -3,35 +3,38 @@ import FormInput from "../../form/FormInput";
 import { useLogin } from "./hooks/useLogin";
 
 const Login = () => {
-    const { password, username, handleLogin, handleUsernameChange, handlePasswordChange } = useLogin();
+    const { register, errors, handleLogin } = useLogin();
 
     return (
         <div className="flex items-center justify-center h-screen">
             <form onSubmit={handleLogin}>
-                <div className="flex flex-col gap-4 bg-white p-12 rounded-2xl shadow-lg">
+                <div className="flex flex-col gap-4 p-8 min-w-[300px] bg-white rounded-2xl shadow-lg sm:p-12 sm:w-md">
                     <div className="text-center">
-                        <h1 className="text-3xl font-bold">Welcome Back</h1>
+                        <h1 className="text-3xl font-bold">ยินดีต้อนรับ</h1>
                         <div className="text-sm text-gray-400 my-2">
-                            <p>Glad to see you again 👋🏻</p>
-                            <p>Login to your account below</p>
+                            <p>ดีใจที่ได้พบคุณอีกครั้ง 👋🏻</p>
+                            <p>เข้าสู่ระบบด้วยชื่อผู้ใช้ของคุณข้างล่าง</p>
                         </div>
                     </div>
-
                     <FormInput
-                        label={"Username"}
+                        label={"ชื่อผู้ใช้"}
                         name={"username"}
                         type={"text"}
-                        placeholder="Enter username.."
-                        onChange={handleUsernameChange}
-                        defaultValue={username}
+                        placeholder="กรอกชื่อผู้ใช้..."
+                        register={register}
+                        required
+                        autoComplete="username"
+                        error={errors.username?.message}
                     />
                     <FormInput
                         label="Password"
                         name="password"
                         type="password"
                         placeholder="Enter password.."
-                        onChange={handlePasswordChange}
-                        defaultValue={password}
+                        register={register}
+                        required
+                        autoComplete="current-password"
+                        error={errors.password?.message}
                     />
                     <div className="mt-2">
                         <Button text="Login" type="submit" />

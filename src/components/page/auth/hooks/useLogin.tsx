@@ -1,28 +1,25 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../hooks/useAuth";
 import { authService } from "../../../../services/authService";
 import { useToast } from "../../../../hooks/useToast";
+import { useForm } from "react-hook-form";
+import { LoginFormData, loginSchema } from "./loginSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const useLogin = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
     const { toastSuccess, toastWarning } = useToast();
-
     const { login } = useAuth();
     const navigate = useNavigate();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+    } = useForm<LoginFormData>({ resolver: zodResolver(loginSchema) });
 
-    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value);
-    };
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
-    };
-
-    const handleLogin = (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleLogin = handleSubmit((data) => {
         authService
-            .login({ username, password })
+            .login(data)
             .then((loginData) => {
                 login(loginData);
                 toastSuccess("Login Success!");
@@ -32,12 +29,12 @@ export const useLogin = () => {
                 console.error(error);
                 toastWarning("Invalid username or password");
             });
-    };
+        reset();
+    });
+
     return {
-        username,
-        password,
+        register,
+        errors,
         handleLogin,
-        handleUsernameChange,
-        handlePasswordChange,
     };
 };
