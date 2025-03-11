@@ -23,14 +23,12 @@ const Table = ({ headers, rows, isLoading }: TableProps) => {
     };
 
     return (
-        <div className="relative">
-            {isLoading && (
-                <div className="absolute inset-0 bg-white bg-opacity-50 flex items-center justify-center z-10">
-                    <Loading />
-                </div>
-            )}
+        <div className="relative min-h-[300px]">
+            {isLoading && <Loading />}
             {rows.length === 0 && !isLoading ? (
-                <div className="p-10 text-gray-500 text-center">No data available</div>
+                <div className="flex items-center justify-center text-gray-500 min-h-[300px]">
+                    <p>No data available</p>
+                </div>
             ) : (
                 <table
                     className={"min-w-full border-spacing-2 text-sm text-left transition-opacity"}
