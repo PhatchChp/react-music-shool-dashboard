@@ -17,6 +17,8 @@ export enum Role {
 
 export type UserResponse = PaginationResponse<User>;
 
+export type UserRequest = Omit<User, "id" | "createdAt" | "updatedAt">;
+
 export const userService = {
     getAll: async (
         pagination: PaginationRequest,
@@ -30,5 +32,8 @@ export const userService = {
             ...(role ? { role } : {}),
         });
         return api.get(`/user?${params.toString()}`).then((response) => response.data);
+    },
+    create: async (userData: UserRequest) => {
+        return api.post(`/user/create`, userData).then((response) => response);
     },
 };
