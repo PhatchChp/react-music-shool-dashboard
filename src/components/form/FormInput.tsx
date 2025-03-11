@@ -4,7 +4,7 @@ interface FormInputProps<T extends FieldValues> {
     label: string;
     name: Path<T>;
     id?: string;
-    type?: string;
+    type?: React.HTMLInputTypeAttribute;
     placeholder?: string;
     defaultValue?: string;
     required?: boolean;
